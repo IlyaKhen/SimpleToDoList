@@ -39,6 +39,16 @@ while (true)
             Console.WriteLine("Task status updated!");
             break;
         case "delete":
+            Console.WriteLine("Write a task name:");
+            string dName = Console.ReadLine() ?? "";
+            if (dName.Length == 0)
+            {
+                Console.WriteLine("Task name connot be empty!");
+                break;
+            }
+            var result = toDoTasks.Remove(toDoTasks.Find(t => t.Name == dName));
+            if (!result)
+                Console.WriteLine("Something bad happend when removing task!");
             Console.WriteLine("Task was removed!");
             break;
         case "showall":
@@ -59,9 +69,9 @@ while (true)
     if (command == "exit") break;
 }
 
-string[] GetCommands()
+string[] GetCommands(string cmd)
 {
-    string[] commands = { "", "" };
+    string[] commands = cmd.Split(" ");
     return commands;
 }
 
